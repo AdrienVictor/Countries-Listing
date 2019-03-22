@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Find your countries</title>
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+      integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div class="world-countries">
+      <div class="countries-searchbar">
+        <h1>World Countries List</h1>
+        <p>The list contains <span></span> countries</p>
+        <div class="search-buttons">
+          <button class="search start">Countries starting with</button>
+          <button class="search contains checked">Countries containing</button>
+          <button class="az">
+            <i class="fas fa-sort-alpha-down"></i>
+          </button>
+        </div>
+        <input type="text" placeholder="Search Countries" />
+      </div>
+      <div class="list-info"></div>
+      <div class="countries-list"></div>
+    </div>
+    <script src="./script.js"></script>
+  </body>
+</html>

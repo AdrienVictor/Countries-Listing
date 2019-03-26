@@ -241,7 +241,7 @@ function filter() {
   search.value != ''
     ? (listInfo.innerHTML = `<b>${countriesContain.length}/${
         countries.length
-      } countries contains <span class='red'>${search.value}</span></b>`)
+      } countries contains <span class='red'>${searchValue}</span></b>`)
     : (listInfo.innerHTML = '');
   listGenerator(countriesContain);
 }
@@ -254,7 +254,7 @@ function filterStartWith() {
   search.value != ''
     ? (listInfo.innerHTML = `<b>${countriesStart.length}/${
         countries.length
-      } countries start with <span class='red'>${search.value}</span></b>`)
+      } countries start with <span class='red'>${searchValue}</span></b>`)
     : (listInfo.innerHTML = '');
   listGenerator(countriesStart);
 }
@@ -275,17 +275,14 @@ function buttonChecker() {
 }
 
 function sort() {
-  const showCountries = document.querySelectorAll('.country');
-  let sortCountries = [];
-  console.log(az);
-
-  showCountries.forEach(country => sortCountries.push(country.textContent));
-  listGenerator(sortCountries.reverse());
   if (az)
     (az = false),
-      (azButton.innerHTML = '<i class="fas fa-sort-alpha-down"></i>');
+      (azButton.innerHTML = '<i class="fas fa-sort-alpha-down"></i>'),
+      showCountries(countries.reverse());
   else
-    (az = true), (azButton.innerHTML = '<i class="fas fa-sort-alpha-up"></i>');
+    (az = true),
+      (azButton.innerHTML = '<i class="fas fa-sort-alpha-up"></i>'),
+      showCountries(countries.reverse());
 }
 
 listGenerator(countries);

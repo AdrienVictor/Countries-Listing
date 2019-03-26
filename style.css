@@ -9,7 +9,7 @@
   font-family: 'mario';
 }
 body {
-  background-image: url(./assets/mario-map.png);
+  background-image: url(./assets/mario-map2.jpg);
   background-position: center;
   background-size: contain;
   background-attachment: fixed;
@@ -19,24 +19,22 @@ body {
 }
 h1 {
   margin-top: 4%;
-  font-size: 3rem;
+  font-size: 5rem;
 }
-
 .search-buttons {
   display: flex;
   justify-content: center;
 }
 .search-buttons > .search,
 .az {
-  box-shadow: ;
-  font-size: 1rem;
+  font-size: 1.5rem;
   padding: 10px;
   margin: 15px 10px;
   background: url(./assets/question_mark-brick.png) repeat;
   background-size: contain;
   background-position: center;
   color: white;
-  text-shadow: 3px 2px black;
+  text-shadow: 4px 2px black;
 
   /* border: none; */
 }
@@ -57,7 +55,7 @@ input {
   width: 40%;
   margin: 20px;
   padding: 15px;
-  font-size: 1.5rem;
+  font-size: 2rem;
   text-align: center;
   background-color: black;
   border: none;
@@ -97,7 +95,7 @@ input::placeholder {
 .blue,
 .yellow,
 .number {
-  text-shadow: 3px 2px black;
+  text-shadow: 3px 3px black;
 }
 .green {
   color: #72bf43;
@@ -112,10 +110,11 @@ input::placeholder {
   color: #ffdd00;
 }
 .number {
-  color: #049fe1;
+  color: #f1135b;
 }
 p {
-  font-size: 1.2rem;
+  font-size: 2rem;
+  margin-bottom: 30px;
 }
 
 b {

@@ -210,49 +210,40 @@ const countries = [
 ];
 const search = document.querySelector('input');
 const searchButtons = document.querySelectorAll('.search');
+const containsBtn = document.querySelector('.contains');
+const startBtn = document.querySelector('.start');
 const azButton = document.querySelector('.az');
 const countriesList = document.querySelector('.countries-list');
-const countriesNumber = document.querySelector('span');
+const countriesNumber = document.querySelector('.number');
 const listInfo = document.querySelector('.list-info');
-
 let az = false;
 
 countriesNumber.textContent = `${countries.length}`;
 
-function randomColor() {
-  let n = 6,
-    hexColor = '#';
-  while (n--) {
-    hexColor += ((Math.random() * 16) | 0).toString(16);
-  }
-  return hexColor;
-}
-
-function listGenerator(filterCountries) {
+function listGenerator(countries) {
   countriesList.innerHTML = '';
-  for (i = 0; i < filterCountries.length; i++) {
-    let color = randomColor();
-    let country = document.createElement('div');
-    country.textContent = filterCountries[i];
-    country.style.backgroundColor = color;
+  countries.forEach((newCountry, index) => {
+    country = document.createElement('div');
+    country.innerHTML = `<span>${newCountry}</span>`;
     country.classList.add('country');
     countriesList.appendChild(country);
-  }
-  search.addEventListener('keyup', filter);
+    index % 2 != 0
+      ? country.classList.add('odd')
+      : country.classList.add('even');
+  });
 }
 
 function filter() {
   let searchValue = search.value;
-  let countriesFind = countries.filter(country => {
+  let countriesContain = countries.filter(country => {
     return country.toUpperCase().includes(searchValue.toUpperCase());
   });
-
-  listGenerator(countriesFind);
   search.value != ''
-    ? (listInfo.innerHTML = `${countriesFind.length}/${
+    ? (listInfo.innerHTML = `<b>${countriesContain.length}/${
         countries.length
-      } countries contains <b>${search.value}</b>`)
+      } countries contains <span class='red'>${search.value}</span></b>`)
     : (listInfo.innerHTML = '');
+  listGenerator(countriesContain);
 }
 
 function filterStartWith() {
@@ -260,50 +251,46 @@ function filterStartWith() {
   let countriesStart = countries.filter(country => {
     return country.toUpperCase().startsWith(searchValue.toUpperCase());
   });
-  console.log(searchValue);
-
-  listGenerator(countriesStart);
   search.value != ''
-    ? (listInfo.innerHTML = `${countriesStart.length}/${
+    ? (listInfo.innerHTML = `<b>${countriesStart.length}/${
         countries.length
-      } countries start with <b>${search.value}</b>`)
+      } countries start with <span class='red'>${search.value}</span></b>`)
     : (listInfo.innerHTML = '');
+  listGenerator(countriesStart);
+}
+
+function showCountries() {
+  if (containsBtn.classList.contains('checked')) filter();
+  else if (startBtn.classList.contains('checked')) filterStartWith();
 }
 
 function buttonChecker() {
   searchButtons.forEach(button => {
     button.classList.remove('checked');
   });
-  if (this.classList.contains('start')) {
-    this.classList.add('checked');
-    search.addEventListener('keyup', filterStartWith);
-    filterStartWith();
-  } else if (this.classList.contains('contains')) {
-    this.classList.add('checked');
-    search.addEventListener('keyup', filter);
-    filter();
-  }
+  if (this.classList.contains('start'))
+    this.classList.add('checked'), filterStartWith();
+  else if (this.classList.contains('contains'))
+    this.classList.add('checked'), filter();
 }
 
 function sort() {
   const showCountries = document.querySelectorAll('.country');
-
   let sortCountries = [];
-  showCountries.forEach(country => {
-    sortCountries.push(country.textContent);
-  });
+  console.log(az);
+
+  showCountries.forEach(country => sortCountries.push(country.textContent));
   listGenerator(sortCountries.reverse());
-  if (az) {
-    az = false;
-    azButton.innerHTML = '<i class="fas fa-sort-alpha-down"></i>';
-  } else {
-    az = true;
-    azButton.innerHTML = '<i class="fas fa-sort-alpha-up"></i>';
-  }
+  if (az)
+    (az = false),
+      (azButton.innerHTML = '<i class="fas fa-sort-alpha-down"></i>');
+  else
+    (az = true), (azButton.innerHTML = '<i class="fas fa-sort-alpha-up"></i>');
 }
 
 listGenerator(countries);
 searchButtons.forEach(button =>
   button.addEventListener('click', buttonChecker)
 );
+search.addEventListener('keyup', showCountries);
 azButton.addEventListener('click', sort);

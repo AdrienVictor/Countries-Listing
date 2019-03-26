@@ -11,13 +11,21 @@
       integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
       crossorigin="anonymous"
     />
+
     <link rel="stylesheet" href="./style.css" />
   </head>
   <body>
     <div class="world-countries">
       <div class="countries-searchbar">
-        <h1>World Countries List</h1>
-        <p>The list contains <span></span> countries</p>
+        <h1>
+          <span class="green">World</span>
+          <span class="yellow">Countries</span> <span class="red">List</span>
+        </h1>
+        <p>
+          <span class="blue">This</span> <span class="red">list</span>
+          <span class="yellow">contains</span> <span class="number"></span>
+          <span class="green">countries</span>
+        </p>
         <div class="search-buttons">
           <button class="search start">Countries starting with</button>
           <button class="search contains checked">Countries containing</button>
@@ -25,7 +33,7 @@
             <i class="fas fa-sort-alpha-down"></i>
           </button>
         </div>
-        <input type="text" placeholder="Search Countries" />
+        <input type="text" placeholder="Let's find your country..." />
       </div>
       <div class="list-info"></div>
       <div class="countries-list"></div>
